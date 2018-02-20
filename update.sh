@@ -3,6 +3,28 @@ if [ ! -w $PWD ]; then
     echo '请确保当前文件夹可写入!'
     exit
 fi
+#add alias file to short command
+(
+cat <<EOF
+#for git
+alias gpu='git push'
+alias gpl='git pull'
+alias gstu='git status'
+alias gsth='git stash'
+alias gsthp='git stash pop stash@{0}'
+alias greb='git rebase -i'
+alias gcomm='git commit -m'
+alias gcoma='git commit -a -m'
+
+#for docker
+alias dpa='docker ps -a'
+alias deit='docker exec -it'
+alias dpl='docker pull'
+
+EOF
+) > ~/.bash_aliases
+source ~/.bash_aliases
+exit
 #change apt source, use tsinghua source https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
